@@ -45,3 +45,7 @@ RUN echo "deb http://ftp.de.debian.org/debian buster main" >> /etc/apt/sources.l
 
 # Ensure that yarn is installed.
 RUN npm i -g yarn@1.12.3 npx
+
+# Copy CI environment variables, if they exist.
+ARG env_vars
+RUN if [ "$env_vars" != "" ]; then export $env_vars; env; fi
